@@ -1,0 +1,6 @@
+@Quest.API_HostAddress = http://localhost:5051
+
+GET {{Quest.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
