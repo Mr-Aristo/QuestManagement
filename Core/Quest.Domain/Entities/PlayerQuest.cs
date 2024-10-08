@@ -10,9 +10,10 @@ public class PlayerQuest
 {
     public Guid Id { get; set; }
     public Guid PlayerId { get; set; }
-    public Player Player { get; set; }
     public Guid QuestId { get; set; }
-    public Quests Quests { get; set; }
+    public virtual Quests Quests { get; set; }
+    public virtual Player Player { get; set; }
+
     public QuestStatus Status { get; set; } 
     public ICollection<QuestProgress> Progress { get; set; } = new List<QuestProgress>();
 }

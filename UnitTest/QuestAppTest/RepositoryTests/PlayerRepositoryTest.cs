@@ -155,7 +155,6 @@ public class PlayerRepositoryTest
     [Fact]
     public async Task CompleteQuestAsync_PlayerQuestIsCompleted_UpdatesQuestToFinishedAndAwardsRewards()
     {
-       
         var player = new Player
         {
             Id = Guid.NewGuid(),
@@ -172,7 +171,7 @@ public class PlayerRepositoryTest
 
         var quest = new Quests
         {
-            Id = player.PlayerQuests.First().QuestId, 
+            Id = player.PlayerQuests.First().QuestId,
             Title = "Test Quest"
         };
 
@@ -184,15 +183,12 @@ public class PlayerRepositoryTest
             Items = new List<RewardItem> { new RewardItem { ItemName = "Reward Item" } }
         };
 
-        
         _context.Players.Add(player);
         _context.QuestRewards.Add(questReward);
         await _context.SaveChangesAsync();
 
-        
         await _repository.CompleteQuestAsync(player, quest);
 
-        
         var updatedPlayerQuest = await _context.PlayerQuests
             .FirstOrDefaultAsync(pq => pq.PlayerId == player.Id && pq.QuestId == quest.Id);
 
@@ -200,11 +196,11 @@ public class PlayerRepositoryTest
         Assert.Equal(QuestStatus.Finished, updatedPlayerQuest.Status);
 
         var updatedPlayer = await _context.Players.FindAsync(player.Id);
-        Assert.Equal(100, updatedPlayer.ExperiencePoints); 
-        Assert.Equal(50, updatedPlayer.Currency); 
-        Assert.Contains(updatedPlayer.PlayerItems, playerItem => playerItem.RewardItem.ItemName == "Reward Item");
-
+        Assert.Equal(100, updatedPlayer.ExperiencePoints);
+        Assert.Equal(50, updatedPlayer.Currency);
+        Assert.Contains(updatedPlayer.PlayerItems, playerItem => playerItem.RewardItem.ItemName == "Reward Item"); // Adjust to match property
     }
+
 
     //[Fact]
     //public async Task UpdateQuestProgressAsync_ValidInput_UpdatesProgress()
@@ -230,7 +226,7 @@ public class PlayerRepositoryTest
     //        }
     //    };
 
-        
+
     //    var progressUpdates = new List<QuestProgress>
     //    {
     //       new QuestProgress { ConditionId = condition.Id, CurrentValue = 0, TargetValue = condition.RequiredValue }
