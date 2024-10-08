@@ -11,9 +11,11 @@ public class Quests
     public Guid Id { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
-    public int RequiredLevel { get; set; }
+    public int RequiredProgress { get; set; }
 
-    public virtual ICollection<QuestRequirement> Requirements { get; set; } = new List<QuestRequirement>();
-    public virtual QuestReward Reward { get; set; }
+    public  ICollection<QuestRequirement> QuestRequirements { get; set; } = new List<QuestRequirement>();
+    public ICollection<QuestReward> QuestRewards { get; set; }
+    public ICollection<QuestCondition> Conditions { get; set; } = new List<QuestCondition>();
+
     public virtual ICollection<PlayerQuest> PlayerQuests { get; set; } = new List<PlayerQuest>();
 }

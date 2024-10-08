@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Quest.Domain.Entities;
 
 namespace Quest.Application.Abstracts.Repositories;
 
-public interface IQuestRepository
+public interface IUnitOfWork : IDisposable
 {
-    Task<Quests> GetQuestWithRewardsAsync(Guid questId);
+    IPlayerRepository PlayerRepository { get; set; }
+    IQuestRepository QuestRepository { get; set; }
+
+    Task<int> SaveAsync();
 }

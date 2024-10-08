@@ -4,13 +4,25 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>0093dd82-7558-4ad3-a9fb-fd21f948bcec</UserSecretsId>
+    <UserSecretsId>1de4a62d-db8d-49f9-be8a-ed843ce0d037</UserSecretsId>
     <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
     <DockerfileContext>..\..</DockerfileContext>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.4.1" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
+    <PackageReference Include="Serilog" Version="4.0.2" />
+    <PackageReference Include="Serilog.AspNetCore" Version="8.0.2" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="8.0.3" />
+    <PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Quest.Application\Quest.Application.csproj" />
+    <ProjectReference Include="..\..\Core\Quest.Domain\Quest.Domain.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Quest.Infrastructure\Quest.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Quest.Persistance\Quest.Persistance.csproj" />
   </ItemGroup>
 
 </Project>
