@@ -95,7 +95,7 @@ public class PlayerRepository : IPlayerRepository
                 Progress = new List<QuestProgress>()
             };
 
-            _context.PlayerQuests.Add(playerQuest);
+            await _context.PlayerQuests.AddAsync(playerQuest);
             await _context.SaveChangesAsync();
         }
         catch (Exception ex)

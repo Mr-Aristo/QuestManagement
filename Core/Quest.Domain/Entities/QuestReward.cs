@@ -11,7 +11,7 @@ public class QuestReward
     public Guid Id { get; set; }
     public Guid QuestId { get; set; }
     public Quests Quest { get; set; }
-    public int ExperiencePoints { get; set; } // Reward: Experience points
-    public int Currency { get; set; } // Reward: Currency
-    public ICollection<RewardItem> Items { get; set; } // Reward: Items given to the player
+    public int ExperiencePoints { get; set; } 
+    public int Currency { get; set; } 
+    public ICollection<RewardItem> Items { get; set; } 
 }

@@ -19,6 +19,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quest.Persistance", "Infras
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quest.API", "Presentation\Quest.API\Quest.API.csproj", "{CF4490E7-F44B-47DC-ACC6-245ABF484091}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTest", "UnitTest", "{49C66B26-AE8A-4EE9-AFD0-75B83AE0DE20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuestAppTest", "UnitTest\QuestAppTest\QuestAppTest.csproj", "{00092B5B-FC1C-4A96-82ED-D08B5A1B94F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,10 @@ Global
 		{CF4490E7-F44B-47DC-ACC6-245ABF484091}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF4490E7-F44B-47DC-ACC6-245ABF484091}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF4490E7-F44B-47DC-ACC6-245ABF484091}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00092B5B-FC1C-4A96-82ED-D08B5A1B94F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00092B5B-FC1C-4A96-82ED-D08B5A1B94F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00092B5B-FC1C-4A96-82ED-D08B5A1B94F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00092B5B-FC1C-4A96-82ED-D08B5A1B94F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +63,7 @@ Global
 		{7EA97D97-E348-442F-83BA-1E8D05781BF3} = {849F5131-EAC8-4EF1-939F-71C0160AEC7B}
 		{74382B67-2B54-44F8-901E-5DE358F1183B} = {849F5131-EAC8-4EF1-939F-71C0160AEC7B}
 		{CF4490E7-F44B-47DC-ACC6-245ABF484091} = {7AED5EB9-CAA1-42CE-8DDB-9B00E7D949BF}
+		{00092B5B-FC1C-4A96-82ED-D08B5A1B94F7} = {49C66B26-AE8A-4EE9-AFD0-75B83AE0DE20}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0C74C01F-1AF9-42BA-B5EA-E8F6BA577704}

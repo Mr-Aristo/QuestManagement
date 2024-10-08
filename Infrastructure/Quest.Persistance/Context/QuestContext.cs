@@ -44,4 +44,8 @@ public class QuestContext : DbContext
             .WithMany(c => c.QuestProgresses)
             .HasForeignKey(qp => qp.ConditionId);
     }
+    public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        return await base.SaveChangesAsync(cancellationToken);
+    }
 }

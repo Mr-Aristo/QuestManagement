@@ -21,11 +21,11 @@ public class PlayersController : Controller
     }
 
     [HttpPost("{playerId}/accept-quest/{questId}")]
-    public async Task<IActionResult> AcceptQuest(Guid playerId, Guid questId)
+    public async Task<IActionResult> AcceptQuest(string playerId, string questId)
     {
         try
         {
-            await _mediator.Send(new AcceptQuestCommand { PlayerId = playerId, QuestId = questId });
+            await _mediator.Send(new AcceptQuestCommand { PlayerId = Guid.Parse(playerId), QuestId = Guid.Parse(questId) });
             return NoContent();
         }
         catch (InvalidOperationException ex)
@@ -41,11 +41,11 @@ public class PlayersController : Controller
     }
 
     [HttpPost("{playerId}/complete-quest/{questId}")]
-    public async Task<IActionResult> CompleteQuest(Guid playerId, Guid questId)
+    public async Task<IActionResult> CompleteQuest(string playerId, string questId)
     {
         try
         {
-            await _mediator.Send(new CompleteQuestCommand { PlayerId = playerId, QuestId = questId });
+            await _mediator.Send(new CompleteQuestCommand { PlayerId = Guid.Parse(playerId), QuestId = Guid.Parse(questId) });
             return NoContent();
         }
         catch (InvalidOperationException ex)
@@ -61,11 +61,11 @@ public class PlayersController : Controller
     }
 
     [HttpPut("{playerId}/update-quest-progress/{questId}")]
-    public async Task<IActionResult> UpdateQuestProgress(Guid playerId, Guid questId, [FromBody] IEnumerable<QuestProgress> progressUpdates)
+    public async Task<IActionResult> UpdateQuestProgress(string playerId, string questId, [FromBody] IEnumerable<QuestProgress> progressUpdates)
     {
         try
         {
-            await _mediator.Send(new UpdateQuestProgressCommand { PlayerId = playerId, QuestId = questId, ProgressUpdates = progressUpdates });
+            await _mediator.Send(new UpdateQuestProgressCommand { PlayerId = Guid.Parse(playerId), QuestId = Guid.Parse(questId), ProgressUpdates = progressUpdates });
             return NoContent();
         }
         catch (InvalidOperationException ex)
@@ -81,11 +81,11 @@ public class PlayersController : Controller
     }
 
     [HttpGet("{playerId}/quests")]
-    public async Task<ActionResult<IEnumerable<Quests>>> GetAvailableQuests(Guid playerId)
+    public async Task<ActionResult<IEnumerable<Quests>>> GetAvailableQuests(string playerId)
     {
         try
         {
-            var quests = await _mediator.Send(new GetAvailableQuestsQuery { PlayerId = playerId });
+            var quests = await _mediator.Send(new GetAvailableQuestsQuery { PlayerId = Guid.Parse(playerId)});
             return Ok(quests);
         }
         catch (Exception ex)

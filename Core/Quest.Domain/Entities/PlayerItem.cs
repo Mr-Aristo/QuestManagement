@@ -14,7 +14,7 @@ public class PlayerItem
     public Player Player { get; set; }
 
     public Guid ItemId { get; set; }
-    public RewardItem Item { get; set; } 
+    public RewardItem RewardItem { get; set; } 
 
     public int Quantity { get; set; } 
 }
