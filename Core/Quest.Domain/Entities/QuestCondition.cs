@@ -11,11 +11,7 @@ public class QuestCondition
     public Guid Id { get; set; }
     public string Description { get; set; }
     public int RequiredValue { get; set; }
-
- 
     public Guid QuestId { get; set; }
-    public Quests Quest { get; set; }
-
-    
+    public virtual Quests Quest { get; set; }
     public ICollection<QuestProgress> QuestProgresses { get; set; } = new List<QuestProgress>();
 }

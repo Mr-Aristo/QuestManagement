@@ -12,10 +12,8 @@ public class Quests
     public string Title { get; set; }
     public string Description { get; set; }
     public int RequiredProgress { get; set; }
-
-    public  ICollection<QuestRequirement> QuestRequirements { get; set; } = new List<QuestRequirement>();
-    public ICollection<QuestReward> QuestRewards { get; set; }
+    public ICollection<QuestRequirement> QuestRequirements { get; set; } = new List<QuestRequirement>();
+    public ICollection<QuestReward> QuestRewards { get; set; } = new List<QuestReward>();
     public ICollection<QuestCondition> Conditions { get; set; } = new List<QuestCondition>();
-
     public virtual ICollection<PlayerQuest> PlayerQuests { get; set; } = new List<PlayerQuest>();
 }
