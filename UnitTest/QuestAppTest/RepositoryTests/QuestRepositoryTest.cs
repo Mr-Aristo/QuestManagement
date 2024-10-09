@@ -16,25 +16,27 @@ public class QuestRepositoryTests
     {
         _mockLogger = new Mock<ILogger<QuestRepository>>();
 
-        // Set up an in-memory database for testing
+        
         var options = new DbContextOptionsBuilder<QuestContext>()
             .UseInMemoryDatabase(databaseName: "QuestDatabase")
             .Options;
 
         _context = new QuestContext(options);
 
-        // Initialize the repository
+        
         _repository = new QuestRepository(_context, _mockLogger.Object);
     }
 
     [Fact]
     public async Task GetQuestWithRewardsAsync_ValidQuestId_ReturnsQuestWithRewards()
     {
-        // Arrange
+      
         var questId = Guid.NewGuid();
         var quest = new Quests
         {
             Id = questId,
+            Title = "Find the Treasure",  
+            Description = "A quest to find the hidden treasure.",  
             QuestRewards = new List<QuestReward>
             {
                 new QuestReward
@@ -47,14 +49,14 @@ public class QuestRepositoryTests
             }
         };
 
-        // Add the quest to the in-memory database
+       
         _context.Quests.Add(quest);
         await _context.SaveChangesAsync();
 
-        // Act
+       
         var result = await _repository.GetQuestWithRewardsAsync(questId);
 
-        // Assert
+        
         Assert.NotNull(result);
         Assert.Equal(questId, result.Id);
         Assert.NotEmpty(result.QuestRewards);
@@ -64,29 +66,40 @@ public class QuestRepositoryTests
     [Fact]
     public async Task GetQuestWithRewardsAsync_InvalidQuestId_ReturnsNull()
     {
-        // Act
+       
         var result = await _repository.GetQuestWithRewardsAsync(Guid.NewGuid());
 
-        // Assert
+        
         Assert.Null(result);
     }
 
     [Fact]
     public async Task GetQuestWithRewardsAsync_ExceptionThrown_LogsError()
     {
-        // Arrange
-        _mockLogger.Setup(l => l.LogError(It.IsAny<Exception>(), It.IsAny<string>(), It.IsAny<object[]>()))
-                    .Verifiable();
+       
+        _mockLogger.Setup(l => l.Log(
+                LogLevel.Error,                  
+                It.IsAny<EventId>(),            
+                It.Is<It.IsAnyType>((v, t) => true), 
+                It.IsAny<Exception>(),         
+                (Func<It.IsAnyType, Exception, string>)It.IsAny<object>()) 
+        ).Verifiable();
 
-        // Intentionally setting up the context to throw an exception
-        _context.Database.EnsureDeleted(); // Clean the database
-        var invalidContext = new QuestContext(new DbContextOptions<QuestContext>()); // Create a new invalid context
+       
+        _context.Database.EnsureDeleted();
+        var invalidContext = new QuestContext(new DbContextOptions<QuestContext>());
         var repositoryWithInvalidContext = new QuestRepository(invalidContext, _mockLogger.Object);
 
-        // Act
-        await Assert.ThrowsAsync<Exception>(() => repositoryWithInvalidContext.GetQuestWithRewardsAsync(Guid.NewGuid()));
+        
+        await Assert.ThrowsAsync<InvalidOperationException>(() => repositoryWithInvalidContext.GetQuestWithRewardsAsync(Guid.NewGuid()));
 
-        // Assert
-        _mockLogger.Verify(l => l.LogError(It.IsAny<Exception>(), It.IsAny<string>(), It.IsAny<object[]>()), Times.Once);
+        
+        _mockLogger.Verify(l => l.Log(
+            LogLevel.Error,
+            It.IsAny<EventId>(),
+            It.Is<It.IsAnyType>((v, t) => true),
+            It.IsAny<Exception>(),
+            (Func<It.IsAnyType, Exception, string>)It.IsAny<object>()),
+            Times.Once);
     }
 }

@@ -27,12 +27,7 @@ public class PlayersController : Controller
         {
             await _mediator.Send(new AcceptQuestCommand { PlayerId = Guid.Parse(playerId), QuestId = Guid.Parse(questId) });
             return NoContent();
-        }
-        catch (InvalidOperationException ex)
-        {
-            _logger.LogWarning(ex, "Invalid operation while accepting quest for player {PlayerId} and quest {QuestId}.", playerId, questId);
-            return BadRequest(new { Message = ex.Message });
-        }
+        }      
         catch (Exception ex)
         {
             _logger.LogError(ex, "An unexpected error occurred while accepting quest for player {PlayerId} and quest {QuestId}.", playerId, questId);
@@ -47,12 +42,7 @@ public class PlayersController : Controller
         {
             await _mediator.Send(new CompleteQuestCommand { PlayerId = Guid.Parse(playerId), QuestId = Guid.Parse(questId) });
             return NoContent();
-        }
-        catch (InvalidOperationException ex)
-        {
-            _logger.LogWarning(ex, "Invalid operation while completing quest for player {PlayerId} and quest {QuestId}.", playerId, questId);
-            return BadRequest(new { Message = ex.Message });
-        }
+        }     
         catch (Exception ex)
         {
             _logger.LogError(ex, "An unexpected error occurred while completing quest for player {PlayerId} and quest {QuestId}.", playerId, questId);
@@ -67,12 +57,7 @@ public class PlayersController : Controller
         {
             await _mediator.Send(new UpdateQuestProgressCommand { PlayerId = Guid.Parse(playerId), QuestId = Guid.Parse(questId), ProgressUpdates = progressUpdates });
             return NoContent();
-        }
-        catch (InvalidOperationException ex)
-        {
-            _logger.LogWarning(ex, "Invalid operation while updating quest progress for player {PlayerId} and quest {QuestId}.", playerId, questId);
-            return BadRequest(new { Message = ex.Message });
-        }
+        }      
         catch (Exception ex)
         {
             _logger.LogError(ex, "An unexpected error occurred while updating quest progress for player {PlayerId} and quest {QuestId}.", playerId, questId);

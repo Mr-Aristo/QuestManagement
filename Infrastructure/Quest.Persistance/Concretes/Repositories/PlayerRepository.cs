@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Quest.Application.Abstracts.Repositories;
 using Quest.Domain.Entities;
@@ -14,7 +15,6 @@ using Quest.Persistance.Context;
 namespace Quest.Persistance.Concretes.Repositories;
 public class PlayerRepository : IPlayerRepository
 {
-
     private readonly QuestContext _context;
     private readonly ILogger<PlayerRepository> _logger;
     private readonly IValidator<Player> _playerValidator;
@@ -72,18 +72,21 @@ public class PlayerRepository : IPlayerRepository
 
     public async Task AcceptQuestAsync(Player player, Quests quest)
     {
-        // Validate player and quest
-        var playerValidationResult = await _playerValidator.ValidateAsync(player);
-        if (!playerValidationResult.IsValid)
-        {
-            throw new ValidationException(playerValidationResult.Errors);
-        }
+        if (player == null) throw new ArgumentNullException(nameof(player));
+        if (quest == null) throw new ArgumentNullException(nameof(quest));
 
-        var questValidationResult = await _questValidator.ValidateAsync(quest);
-        if (!questValidationResult.IsValid)
-        {
-            throw new ValidationException(questValidationResult.Errors);
-        }
+        // Validate player and quest
+        //var playerValidationResult = await _playerValidator.ValidateAsync(player);
+        //if (!playerValidationResult.IsValid)
+        //{
+        //    throw new ValidationException(playerValidationResult.Errors);
+        //}
+
+        //var questValidationResult = await _questValidator.ValidateAsync(quest);
+        //if (!questValidationResult.IsValid)
+        //{
+        //    throw new ValidationException(questValidationResult.Errors);
+        //}
 
         try
         {
@@ -275,5 +278,6 @@ public class PlayerRepository : IPlayerRepository
             _logger.LogError(ex, "Error updating quest progress.");
             throw;
         }
-    }
+    }   
+
 }

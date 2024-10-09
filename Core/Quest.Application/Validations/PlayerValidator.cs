@@ -17,6 +17,7 @@ namespace Quest.Application.Validations
             RuleFor(player => player.ExperiencePoints).GreaterThanOrEqualTo(0).WithMessage("Experience points must be a non-negative number.");
             RuleFor(player => player.Currency).GreaterThanOrEqualTo(0).WithMessage("Currency must be a non-negative number.");
             RuleFor(player => player.PlayerItems).NotNull().WithMessage("Player must have an inventory.");
+            RuleFor(player => player.Name).MinimumLength(5).WithMessage("Player name must be more than 5 character.");
         }
     }
 }

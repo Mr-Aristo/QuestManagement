@@ -1,6 +1,6 @@
 @Quest.API_HostAddress = http://localhost:5135
 
-GET {{Quest.API_HostAddress}}/weatherforecast/
+GET {{Quest.API_HostAddress}}/Players/
 Accept: application/json
 
 ###
