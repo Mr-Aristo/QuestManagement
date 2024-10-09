@@ -103,7 +103,7 @@ public class PlayerRepository : IPlayerRepository
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Оштбка при принятии quest {QuestId} для player {PlayerId}", quest.Id, player.Id);
+            _logger.LogError(ex, "Ошибка при принятии quest {QuestId} для player {PlayerId}", quest.Id, player.Id);
             throw;
         }
     } 
