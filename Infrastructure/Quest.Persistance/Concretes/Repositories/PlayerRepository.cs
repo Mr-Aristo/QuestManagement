@@ -88,8 +88,16 @@ public class PlayerRepository : IPlayerRepository
         //    throw new ValidationException(questValidationResult.Errors);
         //}
 
-        try
+        var existingPlayerQuest = await _context.PlayerQuests
+                           .FirstOrDefaultAsync(pq => pq.PlayerId == player.Id && pq.QuestId == quest.Id);
+
+        if (existingPlayerQuest != null)
         {
+            throw new InvalidOperationException($"Player {player.Id} уже принял quest {quest.Id}.");
+        }
+
+        try
+        {           
             var playerQuest = new PlayerQuest
             {
                 PlayerId = player.Id,
@@ -210,7 +218,6 @@ public class PlayerRepository : IPlayerRepository
         }
         catch (Exception ex)
         {
-
             _logger.LogError(ex, "Ошибка при добавлении items to player {PlayerId}", player.Id);
             throw new InvalidOperationException("Не удалось добавить items to player's inventory.", ex);
         }
