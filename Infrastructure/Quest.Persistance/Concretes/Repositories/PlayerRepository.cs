@@ -40,14 +40,14 @@ public class PlayerRepository : IPlayerRepository
          .FirstOrDefaultAsync(p => p.Id == playerId);
 
             if (player == null)
-                throw new InvalidOperationException($"Player with ID {playerId} not found.");
+                throw new InvalidOperationException($"Player с ID {playerId} не найдено.");
 
             return player;
         }
         catch (Exception ex) 
         {
-            _logger.LogError(ex, "Error retrieving player with ID {PlayerId}.", playerId);
-            throw new InvalidOperationException("An error occurred while retrieving the player.", ex);
+            _logger.LogError(ex, "Ошибка при извлечении  player с ID {PlayerId}.", playerId);
+            throw new InvalidOperationException("При извлечении плеера произошла ошибка.", ex);
         }
     }
 
@@ -65,7 +65,7 @@ public class PlayerRepository : IPlayerRepository
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error fetching available quests for player {PlayerId}", player.Id);
+            _logger.LogError(ex, "Ошибка при выборе доступных quests для player {PlayerId}", player.Id);
             throw;
         }
     }
@@ -103,7 +103,7 @@ public class PlayerRepository : IPlayerRepository
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error accepting quest {QuestId} for player {PlayerId}", quest.Id, player.Id);
+            _logger.LogError(ex, "Оштбка при принятии quest {QuestId} для player {PlayerId}", quest.Id, player.Id);
             throw;
         }
     } 
