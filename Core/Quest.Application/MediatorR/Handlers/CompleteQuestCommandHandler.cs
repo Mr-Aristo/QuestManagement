@@ -25,7 +25,7 @@ public class CompleteQuestCommandHandler : IRequestHandler<CompleteQuestCommand,
 
         if (player == null || quest == null)
         {
-            throw new InvalidOperationException("Player or Quest not found.");
+            throw new InvalidOperationException("Player или Quest не найдена.");
         }
 
         await _unitOfWork.PlayerRepository.CompleteQuestAsync(player, quest);

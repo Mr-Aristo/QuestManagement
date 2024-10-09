@@ -39,7 +39,7 @@ public class QuestRepository : IQuestRepository
         catch (Exception ex)
         {
 
-            _logger.LogError(ex, "Error getting quest wiht reward {QuestId}", questId);
+            _logger.LogError(ex, "Ошибка при поличении quest with reward {QuestId}", questId);
             throw;
         }
     }

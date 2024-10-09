@@ -30,8 +30,8 @@ public class PlayersController : Controller
         }      
         catch (Exception ex)
         {
-            _logger.LogError(ex, "An unexpected error occurred while accepting quest for player {PlayerId} and quest {QuestId}.", playerId, questId);
-            return StatusCode(500, new { Message = "An unexpected error occurred." });
+            _logger.LogError(ex, "При приеме произошла непредвиденная ошибка: quest for player {PlayerId} and quest {QuestId}.", playerId, questId);
+            return StatusCode(500, new { Message = "Произошла непредвиденная ошибка." });
         }
     }
 
@@ -45,8 +45,8 @@ public class PlayersController : Controller
         }     
         catch (Exception ex)
         {
-            _logger.LogError(ex, "An unexpected error occurred while completing quest for player {PlayerId} and quest {QuestId}.", playerId, questId);
-            return StatusCode(500, new { Message = "An unexpected error occurred." });
+            _logger.LogError(ex, "При завершении работы произошла непредвиденная ошибка: quest for player {PlayerId} and quest {QuestId}.", playerId, questId);
+            return StatusCode(500, new { Message = "Произошла непредвиденная ошибка." });
         }
     }
 
@@ -60,8 +60,8 @@ public class PlayersController : Controller
         }      
         catch (Exception ex)
         {
-            _logger.LogError(ex, "An unexpected error occurred while updating quest progress for player {PlayerId} and quest {QuestId}.", playerId, questId);
-            return StatusCode(500, new { Message = "An unexpected error occurred." });
+            _logger.LogError(ex, "При обновлении произошла непредвиденная ошибка: quest progress for player {PlayerId} and quest {QuestId}.", playerId, questId);
+            return StatusCode(500, new { Message = "Произошла непредвиденная ошибка." });
         }
     }
 
@@ -75,8 +75,8 @@ public class PlayersController : Controller
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "An unexpected error occurred while retrieving available quests for player {PlayerId}.", playerId);
-            return StatusCode(500, new { Message = "An unexpected error occurred." });
+            _logger.LogError(ex, "При извлечении доступных данных произошла непредвиденная ошибка: quests for player {PlayerId}.", playerId);
+            return StatusCode(500, new { Message = "Произошла непредвиденная ошибка." });
         }
     }
 }

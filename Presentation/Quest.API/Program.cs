@@ -13,7 +13,7 @@ Log.Logger = new LoggerConfiguration()
     .Enrich.FromLogContext() 
     .CreateLogger();
 
-//ID service
+//DI service
 builder.Services.AddPersistanceService();
 
 builder.Services.AddControllers();
@@ -32,7 +32,7 @@ using (var scope = app.Services.CreateScope())
     }
     catch (Exception ex)
     {
-        Log.Error(ex, "An error occurred while migrating the database.");
+        Log.Error(ex, "Произошла ошибка во время migrating the database.");
     }
 }
 

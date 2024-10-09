@@ -22,7 +22,7 @@ public class GetAvailableQuestsQueryHandler : IRequestHandler<GetPlayerWithQuest
     public async Task<Player> Handle(GetPlayerWithQuestsQuery request, CancellationToken cancellationToken)
     {
         var player = await _unitOfWork.PlayerRepository.GetPlayerWithQuestsAsync(request.PlayerId);
-        return player ?? throw new InvalidOperationException("Player not found.");
+        return player ?? throw new InvalidOperationException("Player не найдено.");
     }
 }
 

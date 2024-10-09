@@ -25,7 +25,7 @@ namespace Quest.Application.MediatorR.Handlers
 
             if (player == null || quest == null)
             {
-                throw new InvalidOperationException("Player or Quest not found.");
+                throw new InvalidOperationException("Player или Quest не найдено.");
             }
 
             await _unitOfWork.PlayerRepository.UpdateQuestProgressAsync(player, quest, request.ProgressUpdates);

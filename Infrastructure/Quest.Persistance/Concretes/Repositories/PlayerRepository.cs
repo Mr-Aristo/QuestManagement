@@ -128,7 +128,7 @@ public class PlayerRepository : IPlayerRepository
             .FirstOrDefaultAsync(pq => pq.PlayerId == player.Id && pq.QuestId == quest.Id && pq.Status == QuestStatus.Completed);
 
             if (playerQuest == null)
-                throw new InvalidOperationException("Quest not found or not completed.");
+                throw new InvalidOperationException("Quest не найдено или не завершено.");
 
 
             playerQuest.Status = QuestStatus.Finished;
@@ -149,7 +149,7 @@ public class PlayerRepository : IPlayerRepository
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error completing quest {QuestId} for player {PlayerId}", quest.Id, player.Id);
+            _logger.LogError(ex, "Ошибка при завершении quest {QuestId} для player {PlayerId}", quest.Id, player.Id);
             throw;
         }
     }
@@ -163,8 +163,8 @@ public class PlayerRepository : IPlayerRepository
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error adding experience points to player {PlayerId}", player.Id);
-            throw new InvalidOperationException("Failed to add experience points.", ex);
+            _logger.LogError(ex, "Ошибка при добавлении experience points to player {PlayerId}", player.Id);
+            throw new InvalidOperationException("Не удалось добавить experience points.", ex);
         }
     }
 
@@ -178,8 +178,8 @@ public class PlayerRepository : IPlayerRepository
         catch (Exception ex)
         {
 
-            _logger.LogError(ex, "Error adding currency to player {PlayerId}", player.Id);
-            throw new InvalidOperationException("Failed to add currency.", ex);
+            _logger.LogError(ex, "Ошибка при добавлении currency to player {PlayerId}", player.Id);
+            throw new InvalidOperationException("Не удалоси добавить currency.", ex);
         }
     }
 
@@ -211,8 +211,8 @@ public class PlayerRepository : IPlayerRepository
         catch (Exception ex)
         {
 
-            _logger.LogError(ex, "Error adding items to player {PlayerId}", player.Id);
-            throw new InvalidOperationException("Failed to add items to player's inventory.", ex);
+            _logger.LogError(ex, "Ошибка при добавлении items to player {PlayerId}", player.Id);
+            throw new InvalidOperationException("Не удалось добавить items to player's inventory.", ex);
         }
     }
 
@@ -238,7 +238,7 @@ public class PlayerRepository : IPlayerRepository
                 .FirstOrDefaultAsync(pq => pq.PlayerId == player.Id && pq.QuestId == quest.Id);
 
             if (playerQuest == null)
-                throw new InvalidOperationException("Player quest not found.");
+                throw new InvalidOperationException("Player quest не найдено.");
 
             foreach (var progressUpdate in progress)
             {
@@ -249,7 +249,7 @@ public class PlayerRepository : IPlayerRepository
                 {
                     var condition = quest.Conditions.FirstOrDefault(c => c.Id == progressUpdate.ConditionId);
                     if (condition == null)
-                        throw new InvalidOperationException("Invalid condition.");
+                        throw new InvalidOperationException("Недопустимое условие.");
 
                     playerProgress = new QuestProgress
                     {
@@ -263,10 +263,10 @@ public class PlayerRepository : IPlayerRepository
                 }
 
                 if (progressUpdate.CurrentValue < playerProgress.CurrentValue)
-                    throw new InvalidOperationException("Progress value cannot decrease.");
+                    throw new InvalidOperationException("Progress значение не может уменьшиться");
 
                 if (progressUpdate.CurrentValue > playerProgress.TargetValue)
-                    throw new InvalidOperationException("Progress value exceeds the required value.");
+                    throw new InvalidOperationException("Progress значение превышает требуемое значение.");
 
                 playerProgress.CurrentValue = progressUpdate.CurrentValue;
             }
@@ -275,7 +275,7 @@ public class PlayerRepository : IPlayerRepository
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error updating quest progress.");
+            _logger.LogError(ex, "Обновление ошибок quest progress.");
             throw;
         }
     }   
