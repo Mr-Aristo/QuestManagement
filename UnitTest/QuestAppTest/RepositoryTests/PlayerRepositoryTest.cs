@@ -57,8 +57,8 @@ public class PlayerRepositoryTest
             Name = "Test Player",
             PlayerQuests = new List<PlayerQuest>
             {
-                new PlayerQuest { Quests = new Quests { Title = "Quest 1" } },
-                new PlayerQuest { Quests = new Quests { Title = "Quest 2" } }
+                new PlayerQuest { Quest = new Quests { Title = "Quest 1" } },
+                new PlayerQuest { Quest = new Quests { Title = "Quest 2" } }
             }
         };
 
@@ -180,7 +180,7 @@ public class PlayerRepositoryTest
             QuestId = quest.Id,
             ExperiencePoints = 100,
             Currency = 50,
-            Items = new List<RewardItem> { new RewardItem { ItemName = "Reward Item" } }
+            RewardItems = new List<RewardItem> { new RewardItem { ItemName = "Reward Item" } }
         };
 
         _context.Players.Add(player);

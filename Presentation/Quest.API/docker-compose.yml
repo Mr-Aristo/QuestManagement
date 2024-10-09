@@ -1,0 +1,27 @@
+﻿version: '3.4'
+
+services:
+  db:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: p@ssw0rd
+      POSTGRES_DB: PlayerQuestDB
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+  api:
+    build:
+      context: .
+      dockerfile: Presentation/Quest.API/Dockerfile
+    depends_on:
+      - db
+    environment:
+      ConnectionStrings__DefaultConnection: "User ID=postgres;Password=p@ssw0rd;Host=db;Port=5432;Database=PlayerQuestDB;"
+    ports:
+      - "5000:80"
+
+volumes:
+  db-data:

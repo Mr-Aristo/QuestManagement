@@ -39,7 +39,7 @@ public class QuestRepositoryTests
             {
                 new QuestReward
                 {
-                    Items = new List<RewardItem>
+                    RewardItems = new List<RewardItem>
                     {
                         new RewardItem { Id = Guid.NewGuid(), ItemName = "Gold Coin" }
                     }
@@ -58,7 +58,7 @@ public class QuestRepositoryTests
         Assert.NotNull(result);
         Assert.Equal(questId, result.Id);
         Assert.NotEmpty(result.QuestRewards);
-        Assert.Equal("Gold Coin", result.QuestRewards.First().Items.First().ItemName);
+        Assert.Equal("Gold Coin", result.QuestRewards.First().RewardItems.First().ItemName);
     }
 
     [Fact]

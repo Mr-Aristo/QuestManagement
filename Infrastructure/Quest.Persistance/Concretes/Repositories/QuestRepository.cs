@@ -33,7 +33,7 @@ public class QuestRepository : IQuestRepository
         {
             return await _context.Quests
                    .Include(q => q.QuestRewards)
-                       .ThenInclude(r => r.Items)
+                       .ThenInclude(r => r.RewardItems)
                    .FirstOrDefaultAsync(q => q.Id == questId);
         }
         catch (Exception ex)

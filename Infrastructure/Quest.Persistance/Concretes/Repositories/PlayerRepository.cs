@@ -35,7 +35,7 @@ public class PlayerRepository : IPlayerRepository
         {
             var player = await _context.Players
          .Include(p => p.PlayerQuests)
-             .ThenInclude(pq => pq.Quests)
+             .ThenInclude(pq => pq.Quest)
          .Include(p => p.PlayerItems)
          .FirstOrDefaultAsync(p => p.Id == playerId);
 
@@ -132,14 +132,14 @@ public class PlayerRepository : IPlayerRepository
 
             
             var rewards = await _context.QuestRewards
-                .Include(r => r.Items)
+                .Include(r => r.RewardItems)
                 .FirstOrDefaultAsync(r => r.QuestId == quest.Id);
 
             if (rewards != null)
             {
                 await AddExperienceAsync(player, rewards.ExperiencePoints);
                 await AddCurrencyAsync(player, rewards.Currency);
-                await AddItemsAsync(player, rewards.Items);
+                await AddItemsAsync(player, rewards.RewardItems);
             }
 
             await _context.SaveChangesAsync();
@@ -186,7 +186,7 @@ public class PlayerRepository : IPlayerRepository
         {
             foreach (var item in items)
             {
-                var playerItem = player.PlayerItems.FirstOrDefault(pi => pi.ItemId == item.Id);
+                var playerItem = player.PlayerItems.FirstOrDefault(pi => pi.Id == item.Id);
                 if (playerItem != null)
                 {
                     
@@ -198,7 +198,7 @@ public class PlayerRepository : IPlayerRepository
                     player.PlayerItems.Add(new PlayerItem
                     {
                         PlayerId = player.Id,
-                        ItemId = item.Id,
+                        Id = item.Id,
                         Quantity = item.Quantity
                     });
                 }
