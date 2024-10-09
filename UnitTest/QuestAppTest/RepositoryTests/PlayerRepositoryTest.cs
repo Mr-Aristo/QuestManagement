@@ -29,9 +29,12 @@ public class PlayerRepositoryTest
         _playerValidatorMock = new Mock<IValidator<Player>>();
         _questValidatorMock = new Mock<IValidator<Quests>>();
         _mockContext = new Mock<QuestContext>();
+        //var options = new DbContextOptionsBuilder<QuestContext>()
+        //    .UseInMemoryDatabase(databaseName: "QuestDb")
+        //    .Options;
         var options = new DbContextOptionsBuilder<QuestContext>()
-            .UseInMemoryDatabase(databaseName: "QuestDb")
-            .Options;
+           .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
+           .Options;
 
         _context = new QuestContext(options);
         _repository = new PlayerRepository(_context, _loggerMock.Object, null, null);

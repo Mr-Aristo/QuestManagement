@@ -5,7 +5,7 @@ using Quest.Domain.Entities;
 using Quest.Persistance.Concretes.Repositories;
 using Quest.Persistance.Context;
 
-
+namespace QuestAppTest.QuestRepositoryTests;
 public class QuestRepositoryTests
 {
     private readonly Mock<ILogger<QuestRepository>> _mockLogger;
