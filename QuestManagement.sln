@@ -17,11 +17,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quest.Infrastructure", "Inf
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quest.Persistance", "Infrastructure\Quest.Persistance\Quest.Persistance.csproj", "{74382B67-2B54-44F8-901E-5DE358F1183B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quest.API", "Presentation\Quest.API\Quest.API.csproj", "{CF4490E7-F44B-47DC-ACC6-245ABF484091}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quest.API", "Presentation\Quest.API\Quest.API.csproj", "{CF4490E7-F44B-47DC-ACC6-245ABF484091}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTest", "UnitTest", "{49C66B26-AE8A-4EE9-AFD0-75B83AE0DE20}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuestAppTest", "UnitTest\QuestAppTest\QuestAppTest.csproj", "{00092B5B-FC1C-4A96-82ED-D08B5A1B94F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuestAppTest", "UnitTest\QuestAppTest\QuestAppTest.csproj", "{00092B5B-FC1C-4A96-82ED-D08B5A1B94F7}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{44580FB7-B13F-48A7-BCA6-55A03ACE2490}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,10 @@ Global
 		{00092B5B-FC1C-4A96-82ED-D08B5A1B94F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00092B5B-FC1C-4A96-82ED-D08B5A1B94F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00092B5B-FC1C-4A96-82ED-D08B5A1B94F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44580FB7-B13F-48A7-BCA6-55A03ACE2490}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44580FB7-B13F-48A7-BCA6-55A03ACE2490}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44580FB7-B13F-48A7-BCA6-55A03ACE2490}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44580FB7-B13F-48A7-BCA6-55A03ACE2490}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
